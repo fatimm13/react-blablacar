@@ -7,7 +7,7 @@ const Navbar = () => {
                 <a href="/crearViaje"> Nuevo viaje </a>
             </div>
         </nav>
-     );
+    );
 }
  
 export default Navbar;
