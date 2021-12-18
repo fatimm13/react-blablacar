@@ -33,7 +33,8 @@ const CreateUsuario = (props) => {
   return (
     <div className="createUsuario">
       <h1>Registrar usuario</h1>
-      <Form onSubmit={handleSubmit}>
+      <div className="form-container">
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
@@ -77,6 +78,7 @@ const CreateUsuario = (props) => {
 
             <Button variant="primary" type="submit"> Registrar </Button>
         </Form>
+      </div>
     </div>
   );
 }
