@@ -7,8 +7,11 @@ import CreateViaje from './CreateViaje';
 import MiNavbar from './MiNavbar';
 import Footer from './Footer';
 import MapInput from './MapInput';
+import CreateUsuario from './CreateUsuario';
+import ViajesListar from './ViajesListar';
 
 function App() {
+
   return (
     <Router>
       <div className="App">
@@ -29,6 +32,14 @@ function App() {
 
               <Route path="/crearViaje">
                 <CreateViaje/>
+              </Route>
+
+              <Route path="/crearUsuario">
+                <CreateUsuario/>
+              </Route>
+
+              <Route path="/listarViajes">
+                <ViajesListar/>
               </Route>
               
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}

@@ -1,13 +1,10 @@
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
+import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
 
 const MiNavbar = () => {
     return ( 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container fluid>
-                <Navbar.Brand href="#">
+                <Navbar.Brand href="/">
                     <img alt="" src="https://res.cloudinary.com/dugtth6er/image/upload/v1639832622/HHLogo_g7fywq.png" id="logo" width="30" height="30" className="d-inline-block align-top" /> {' '}
                     Halfway Home
                 </Navbar.Brand>
@@ -15,7 +12,7 @@ const MiNavbar = () => {
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto">
                         <Nav.Link href="#action1">Buscar Viaje</Nav.Link>
-                        <Nav.Link href="#action2">Crear Viaje</Nav.Link>
+                        <Nav.Link href="/crearViaje">Crear Viaje</Nav.Link>
                     </Nav>
                     <Nav>
                         <img src="https://res.cloudinary.com/dugtth6er/image/upload/v1639832477/perfil_hont25.png" width="35" height="35" className="d-inline-block align-top" alt="Foto de perfil del usuario" />
@@ -23,7 +20,7 @@ const MiNavbar = () => {
                             <NavDropdown.Item href="#action3">Ver perfil</NavDropdown.Item>
                             <NavDropdown.Item href="#action4">Editar perfil</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action5"> Cerrar sesiÃ³n </NavDropdown.Item>
+                            <NavDropdown.Item href="#action5"> Cerrar sesi&oacute;n </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
