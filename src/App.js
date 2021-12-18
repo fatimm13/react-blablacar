@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import CreateViaje from './CreateViaje';
 import MiNavbar from './MiNavbar';
 import Footer from './Footer';
+import MapInput from './MapInput';
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
               
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">
-                  <NotFound/>
+                  <MapInput/>
+                  {/**<NotFound/>*/}
               </Route>
               
 

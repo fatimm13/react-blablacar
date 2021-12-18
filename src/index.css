@@ -16,3 +16,14 @@
 #logo{
   border-radius: 20%;
 }
+#origen{
+  background-color: blue;
+}
+#destino{
+  background-color: green;
+}
+.leaflet-container {
+  margin: 0;
+  width: 600px;
+  height: 400px;
+}
