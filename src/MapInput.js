@@ -50,7 +50,7 @@ const MapInput = () => {
         <div id="mapa">
             <Button variant="primary" disabled={selOr} onClick={handleClick} >Origen</Button>{' '}
             <Button variant="success" disabled={!selOr} onClick={handleClick}>Destino</Button>{' '}
-            <MapContainer center={{ lat: 51.505, lng: -0.09 }} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={{ lat: 40.4167, lng: -3.70325  }} zoom={13} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
