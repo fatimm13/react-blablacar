@@ -1,13 +1,9 @@
-import { useState } from "react";
-import { Button } from "react-bootstrap";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents  } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet'
 import L from 'leaflet';
-
-const MapInput = () => {
-    const [origen, setOrigen] = useState(null);
-    const [destino, setDestino] = useState(null);
-    const [selOr, setSelOr] = useState(true);
-
+import RoutingMachine from './RoutingMachine';
+const MapRoute = (datos) => {
+    const {origen, destino} = datos
+    console.log(origen)
     var greenIcon = new L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -17,26 +13,12 @@ const MapInput = () => {
         shadowSize: [41, 41]
     });
 
-    const handleClick = () => {
-        setSelOr(!selOr)
-    }
-
-    function LocationMarker() {
-        
-        const map = useMapEvents({
-          click(e) {
-            if(selOr){
-                setOrigen(e.latlng)
-            }else{
-                setDestino(e.latlng)
-            }
-            
-          },
-          locationfound(e) {
-            map.flyTo(e.latlng, map.getZoom())
-          },
-        })
-        map.locate()
+      function AddRouting () {
+        let coord = [origen.lat,origen.lng, destino.lat,destino.lng]
+        return (<RoutingMachine  coord={coord}/>)
+      
+      }
+      function AddMarkers(){
         return(
             <div>
                 { origen && <Marker id = "origen" position={origen} > <Popup>Origen</Popup> </Marker> }
@@ -48,14 +30,13 @@ const MapInput = () => {
       
       return(
         <div id="mapa">
-            <Button variant="primary" disabled={selOr} onClick={handleClick} >Origen</Button>{' '}
-            <Button variant="success" disabled={!selOr} onClick={handleClick}>Destino</Button>{' '}
             <MapContainer center={{ lat: 40.4167, lng: -3.70325  }} zoom={13} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <LocationMarker />
+            <AddRouting/>
+            <AddMarkers/>
             </MapContainer>
         </div>
         
@@ -63,4 +44,4 @@ const MapInput = () => {
   
 }
  
-export default MapInput;
+export default MapRoute;
