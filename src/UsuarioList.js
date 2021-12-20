@@ -1,11 +1,11 @@
 import { Card, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-const UsuarioList = (props) => {
+const UsuarioList = ({ usuarios }) => {
 
     return (
 
         <Row>
-            {props.usuarios && props.usuarios.map(usuario =>{
+            {usuarios.map(usuario =>{
                 return (
                     <div key= {usuario.id} className="col-md-4 ">
                         <Card style={{ width: '18rem' }}>
@@ -17,7 +17,7 @@ const UsuarioList = (props) => {
                             <ListGroup className="list-group-flush">
                                 <ListGroupItem><b>Edad:</b> { usuario.edad} </ListGroupItem>
                                 <ListGroupItem><b>Localidad:</b> { usuario.ubicacion} </ListGroupItem>
-                                <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> { usuario.fecha} </ListGroupItem>
+                                <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                             </ListGroup>
                             <Button variant="primary">Seleccionar</Button>
                             <Button variant="danger">Eliminar</Button>

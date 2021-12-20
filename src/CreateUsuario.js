@@ -1,33 +1,28 @@
 import { useState } from "react";
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
-import APIService from './APIService'
-
-
-const CreateUsuario = (props) => {
+const CreateUsuario = () => {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [edad, setEdad] = useState('');
   const [ubicacion, setUbicacion] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  
+  const history = useHistory();
 
-  const insertUsuario = () =>{
-    APIService.InsertUsuario({nombre, email, contrasena, edad, ubicacion, descripcion})
-    .then((response) => props.insertedUsuario(response))
-    .catch(error => console.log('error',error))
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const body = {nombre, email, contrasena, edad, ubicacion, descripcion};
 
-  const handleSubmit=(event)=>{ 
-    event.preventDefault()
-    insertUsuario()
-    setNombre('')
-    setEmail('')
-    setContrasena('')
-    setEdad('')
-    setUbicacion('')
-    setDescripcion('')
+    fetch('http://localhost:5000/usuarios', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(() => {
+      // history.go(-1);
+      history.push('/');
+    })
   }
 
   return (
@@ -50,11 +45,6 @@ const CreateUsuario = (props) => {
                 <Form.Control type="password" placeholder="Introduzca su contraseña" value={contrasena} onChange={(e)=>setContrasena(e.target.value)} required />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword2">
-                <Form.Label>Repita su contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Repita la contraseña anterior" />
-            </Form.Group>
-
             <Row className="mb-3">
                 <Form.Group as={Col} md="3" controlId="formEdad">
                     <Form.Label>Edad</Form.Label>
@@ -71,12 +61,9 @@ const CreateUsuario = (props) => {
                 <Form.Label>Breve descripción</Form.Label>
                 <Form.Control as="textarea" rows={3} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
             </Form.Group>
-            
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Acepta los términos y condiciones" required />
-            </Form.Group>
 
             <Button variant="primary" type="submit"> Registrar </Button>
+
         </Form>
       </div>
     </div>

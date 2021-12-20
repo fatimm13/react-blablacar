@@ -1,24 +1,10 @@
-import { useState, useEffect } from 'react'
 import UsuarioList from './UsuarioList'
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
+import useFetch from './useFetch';
 
 function UsuariosListar() {
 
-  const [usuarios, setUsuarios] = useState([]);
-
-  // Modify the current state by setting the new data to
-  // the response from the backend
-
-  useEffect(()=>{
-    fetch('http://localhost:5000/usuarios',{
-      'methods':'GET',
-      headers : { 'Content-Type':'application/json' }
-    })
-    .then(response => response.json())
-    .then(response => setUsuarios(response))
-    .catch(error => console.log(error))
-  },[])
-
+  const { error, isPending, data: usuarios } = useFetch('http://localhost:5000/usuarios')
 
   return (
 
@@ -36,8 +22,11 @@ function UsuariosListar() {
       </Row>
 
       <br/>
+      
+      { error && <div>{ error }</div> }
+      { isPending && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
 
-      <UsuarioList usuarios={usuarios} />
+      { usuarios && <UsuarioList usuarios={usuarios} /> }
 
     </Container>
   );

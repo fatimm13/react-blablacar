@@ -11,7 +11,7 @@ const CreateViaje = () => {
     e.preventDefault();
     const blog = { title, body, author };
 
-    fetch('http://localhost:5000/viajes/', {
+    fetch('http://localhost:5000/viajes', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog)
