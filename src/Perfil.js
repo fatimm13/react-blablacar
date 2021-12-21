@@ -11,8 +11,8 @@ const Perfil = () => {
         fetch('http://localhost:5000/usuarios/'+usuario.id, {
           method: 'DELETE'
         }).then(() => {
-            setUser(null);
             history.push('/');
+            setUser(null);
         })
     }
     return ( 
@@ -33,7 +33,7 @@ const Perfil = () => {
                         <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                     </ListGroup>
                     <Button variant="primary">Editar</Button>
-                    <Button variant="danger">Eliminar</Button>
+                    <Button variant="danger" onClick={handleDelete}>Eliminar</Button>
                 </Card>
             </Col>
         </Row>
