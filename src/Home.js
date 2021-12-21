@@ -2,10 +2,11 @@ import UsuarioList from './UsuarioList'
 import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import useFetch from './useFetch';
 
-function UsuariosListar() {
+function UsuariosListar(usuario) {
+ 
 
   const { error, isPending, data: usuarios } = useFetch('http://localhost:5000/usuarios')
-
+  
   return (
 
     <Container>
@@ -26,7 +27,7 @@ function UsuariosListar() {
       { error && <div>{ error }</div> }
       { isPending && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
 
-      { usuarios && <UsuarioList usuarios={usuarios} /> }
+      { usuarios && <UsuarioList usuarios={usuarios}  /> }
 
     </Container>
   );

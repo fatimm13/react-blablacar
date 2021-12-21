@@ -1,7 +1,8 @@
 import { Card, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const UsuarioList = ({ usuarios }) => {
-
+    
+    
     return (
 
         <Row>
@@ -9,7 +10,7 @@ const UsuarioList = ({ usuarios }) => {
                 return (
                     <div key= {usuario.id} className="col-md-4 ">
                         <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src="https://res.cloudinary.com/dugtth6er/image/upload/v1639832477/perfil_hont25.png" />
+                            <Card.Img variant="top" src={usuario.imagen} />
                             <Card.Body>
                                 <Card.Title>{ usuario.nombre}</Card.Title>
                                 <Card.Text> { usuario.descripcion} </Card.Text>
@@ -19,7 +20,7 @@ const UsuarioList = ({ usuarios }) => {
                                 <ListGroupItem><b>Localidad:</b> { usuario.ubicacion} </ListGroupItem>
                                 <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                             </ListGroup>
-                            <Button variant="primary">Seleccionar</Button>
+                            <Button variant="primary" >Seleccionar</Button>
                             <Button variant="danger">Eliminar</Button>
                         </Card>
                     </div>
