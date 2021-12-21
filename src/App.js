@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './Home';
 import ViajesDetails from './ViajesDetails';
 import NotFound from './NotFound';
-import CreateViaje from './CreateViaje';
 import MiNavbar from './MiNavbar';
 import Footer from './Footer';
 import MapInput from './MapInput';
@@ -11,8 +10,14 @@ import CreateUsuario from './CreateUsuario';
 import ViajesListar from './ViajesListar';
 import MapRoute from './MapRoute';
 
+import {useGlobalState} from 'state-pool';
+import Perfil from './Perfil';
+
+
+
 function App() {
-  
+  useGlobalState("user",{default: null, persist: true});
+
   return (
     <Router>
       <div className="App">
@@ -32,7 +37,7 @@ function App() {
               </Route>
 
               <Route path="/crearViaje">
-                <CreateViaje/>
+                <MapInput/>
               </Route>
 
               <Route path="/crearUsuario">
@@ -43,11 +48,14 @@ function App() {
                 <ViajesListar/>
               </Route>
               
+              <Route path="/perfil">
+                <Perfil/>
+              </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">
-                  <MapInput/>
                   {/*<MapRoute origen={{ lat: 36.4167, lng: -3.70325  }} destino={{ lat: 36.4167, lng: -4.70325  }}/>*/}
-                  {/**<NotFound/>*/}
+                  <NotFound/>
+
               </Route>
               
 
