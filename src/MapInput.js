@@ -3,6 +3,7 @@ import { Alert, Button, Form, Row, Col } from "react-bootstrap";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents  } from 'react-leaflet'
 import L from 'leaflet';
 import { useHistory } from "react-router-dom";
+import {useGlobalState} from 'state-pool';
 
 const MapInput = () => {
     const [origen, setOrigen] = useState(null);
@@ -13,6 +14,9 @@ const MapInput = () => {
     const [libres, setLibres] = useState(0);
     const [precio, setPrecio] = useState(0);
     const [mensaje, setMensaje] = useState(null);
+    const [usuario] = useGlobalState("user");
+    const [fecha, setFecha] = useState("");
+    const [hora, setHora] = useState("");
     const history = useHistory();
 
     const handleSubmit = (e) => {
@@ -30,12 +34,15 @@ const MapInput = () => {
       if(precio<=0 ){
         msg+="El precio no puede ser 0 o negativo. \n";
       }
+      if(fecha==="" || hora===""){
+        msg+="Inserte fecha y/o hora. "
+      }
       if(msg===""){
-
+        var date = fecha+" "+hora
         
-        const body = {nombre, plazas, libres, precio, "latOrigen":origen.lat,"latDestino":destino.lat, "longOrigen":origen.lng,"longDestino":destino.lng };
+        const body = {"nombreConductor":usuario.nombre,"idConductor":usuario.id,nombre, plazas, libres, precio, "latOrig":origen.lat,"latDest":destino.lat, "longOrig":origen.lng,"longDest":destino.lng, "hora":date };
         console.log(body);
-        fetch('http://localhost:5000/usuarios', {
+        fetch('http://localhost:5000/viajes', {
           method: 'POST',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
@@ -100,12 +107,22 @@ const MapInput = () => {
                         <Form.Label>Plazas totales</Form.Label>
                         <Form.Control type="number" placeholder="Introduzca las plazas del vehiculo." value={plazas} onChange={(e)=>setPlazas(e.target.value)} />
               </Form.Group>
-              <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formPlazas">
+              <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formLibres">
                         <Form.Label>Plazas libres</Form.Label>
                         <Form.Control type="number" placeholder="Introduzca las plazas disponibles." value={libres} onChange={(e)=>setLibres(e.target.value)} />
               </Form.Group>
             </Row>
-            <Form.Group className="mb-3" controlId="formPlazas">
+            <Row className="mb-3">
+              <Form.Group  as={Col} md="5" controlId="formFecha">
+                        <Form.Label>Fecha</Form.Label>
+                        <Form.Control type="date" placeholder="Fecha de salida" value={fecha} onChange={(e)=>setFecha(e.target.value)} />
+              </Form.Group>
+              <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formHora">
+                        <Form.Label>Hora</Form.Label>
+                        <Form.Control type="time" placeholder="Hora de salida" value={hora} onChange={(e)=>setHora(e.target.value)} />
+              </Form.Group>
+            </Row>
+            <Form.Group className="mb-3" controlId="formPrecio">
                       <Form.Label>Precio por plaza</Form.Label>
                       <Form.Control type="number" placeholder="Introduzca el precio por plaza del vehiculo." value={precio} onChange={(e)=>setPrecio(e.target.value)} />
             </Form.Group>
