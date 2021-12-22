@@ -12,16 +12,21 @@ import MapRoute from './MapRoute';
 
 import {useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
+import EditarPerfil from './EditarPerfil';
+import { Button } from 'react-bootstrap';
 
 
 
 function App() {
+
   useGlobalState("user",{default: null, persist: true});
 
   return (
     <Router>
       <div className="App">
           <MiNavbar/>
+          <br/>
+          <br/>
           <div className="content">
             <Switch>
               {/** Se le pone exact en este caso porque sino para cualquier ruta se entraria a / ya que
@@ -50,6 +55,10 @@ function App() {
               
               <Route path="/perfil">
                 <Perfil/>
+              </Route>
+
+              <Route path="/editPerfil">
+                <EditarPerfil/>
               </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">

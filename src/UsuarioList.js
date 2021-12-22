@@ -1,11 +1,15 @@
 import { Card, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 import {useGlobalState} from 'state-pool';
+
 const UsuarioList = ({ usuarios }) => {
+
     const [user, setUser] = useGlobalState("user");
+    
     let ponerUser = (e) => {
         setUser(e)
         console.log(user)
     }
+
     return (
 
         <Row>

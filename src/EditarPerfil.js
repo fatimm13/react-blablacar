@@ -1,33 +1,37 @@
 import { useState } from "react";
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useGlobalState } from 'state-pool';
 import { useHistory } from "react-router-dom";
 
-const CreateUsuario = () => {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [contrasena, setContrasena] = useState('');
-  const [edad, setEdad] = useState('');
-  const [ubicacion, setUbicacion] = useState('');
-  const [descripcion, setDescripcion] = useState('');
+const EditarPerfil = () => {
+
+  const [usuario, setUser] = useGlobalState("user");
+
+  const [nombre, setNombre] = useState(usuario.nombre);
+  const [edad, setEdad] = useState(usuario.edad);
+  const [ubicacion, setUbicacion] = useState(usuario.ubicacion);
+  const [descripcion, setDescripcion] = useState(usuario.descripcion);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = {nombre, email, contrasena, edad, ubicacion, descripcion};
+    const body = {nombre, edad, ubicacion, descripcion};
 
-    fetch('http://localhost:5000/usuarios', {
-      method: 'POST',
+    fetch('http://localhost:5000/usuarios/'+usuario.id, {
+      method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     }).then(() => {
       // history.go(-1);
-      history.push('/');
+      let nuevo = {nombre: nombre, edad: edad, ubicacion: ubicacion, descripcion: descripcion, imagen: usuario.imagen, fecha: usuario.fecha};
+      setUser(nuevo);
+      history.push('/perfil');
     })
   }
 
   return (
-    <div className="createUsuario">
-      <h1>Registrar usuario</h1>
+    <div className="updateUsuario">
+      <h1>Editar usuario</h1>
       <div className="form-container">
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
@@ -35,20 +39,10 @@ const CreateUsuario = () => {
                 <Form.Control type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Correo electrónico</Form.Label>
-                <Form.Control type="email" placeholder="Introduzca su correo electrónico" value={email} onChange={(e)=>setEmail(e.target.value)} required />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Introduzca su contraseña" value={contrasena} onChange={(e)=>setContrasena(e.target.value)} required />
-            </Form.Group>
-
             <Row className="mb-3">
                 <Form.Group as={Col} md="3" controlId="formEdad">
                     <Form.Label>Edad</Form.Label>
-                    <Form.Control type="number" placeholder="Introduzca su edad" value={edad} onChange={(e)=>setEdad(e.target.value)} min="0" />
+                    <Form.Control type="number" placeholder="Introduzca su edad" value={edad} onChange={(e)=>setEdad(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formLocalidad">
@@ -62,7 +56,7 @@ const CreateUsuario = () => {
                 <Form.Control as="textarea" rows={3} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
             </Form.Group>
 
-            <Button variant="primary" type="submit"> Registrar </Button>
+            <Button variant="primary" type="submit"> Actualizar </Button>
 
         </Form>
       </div>
@@ -70,4 +64,4 @@ const CreateUsuario = () => {
   );
 }
  
-export default CreateUsuario;
+export default EditarPerfil;

@@ -1,21 +1,26 @@
+import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ViajesList = ({ viajes }) => {
   return (
-    <div className="blog-list">
+
+    <Container className="viajes-list">
       {viajes.map(viaje => (
         <div className="blog-preview" key={viaje.id} >
-          <Link to={`/viajes/${viaje.id}`}>
-            <h2>{ viaje.nombre }</h2>
-            <p>Viaje de { viaje.nombreConductor }</p>
-            <p>Origen { viaje.origen }</p>
-            <p>Destino { viaje.destino }</p>
-            <p>Libres: {viaje.libres} </p>
-            <p>Precio: {viaje.precio}</p>
-          </Link>
+          <Card style={{ width: '18rem' }}>
+            <Card.Header><h4>{ viaje.nombre }</h4></Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor }</ListGroup.Item>
+              <ListGroup.Item><b>Origen:</b> { viaje.origen }</ListGroup.Item>
+              <ListGroup.Item><b>Destino:</b> { viaje.destino }</ListGroup.Item>
+              <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>
+              <ListGroup.Item><b>Precio:</b> {viaje.precio}€</ListGroup.Item>
+            </ListGroup>
+            <Button variant="primary" href={"/viajes/"+ viaje.id}>Ver detalles</Button>
+          </Card>
         </div>
       ))}
-    </div>
+    </Container>
   );
 }
  
