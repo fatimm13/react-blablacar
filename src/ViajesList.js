@@ -1,7 +1,12 @@
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
+import { useHistory } from "react-router-dom";
 const ViajesList = ({ viajes }) => {
+  const history = useHistory();
+  const goTo = (url)=>{
+    history.push(url)
+  } 
+
   return (
 
     <Container className="viajes-list">
@@ -16,7 +21,7 @@ const ViajesList = ({ viajes }) => {
               <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>
               <ListGroup.Item><b>Precio:</b> {viaje.precio}€</ListGroup.Item>
             </ListGroup>
-            <Button variant="primary" href={"/viajes/"+ viaje.id}>Ver detalles</Button>
+            <Button variant="primary" onClick={()=>goTo("/viajes/"+ viaje.id)}>Ver detalles</Button>
           </Card>
         </div>
       ))}

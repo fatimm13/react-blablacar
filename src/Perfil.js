@@ -6,8 +6,7 @@ import { useState } from "react";
 const Perfil = () => {
     const [usuario, setUser] = useGlobalState("user");
     const history = useHistory();
-
-    const [imagen, setImagen] = useState(usuario.imagen);
+    const [file, setFile] = useState(null);
 
     const [show, setShow] = useState(false);
 
@@ -22,25 +21,32 @@ const Perfil = () => {
             setUser(null);
         })
     }
-
+    const handleFileSelected = (e) => {
+        const files = Array.from(e.target.files)
+        setFile(files[0])
+        console.log("files:", files[0])
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        const body = {imagen};
-    
+        let formData = new FormData();   
+        formData.append("file", file)
+        formData.append("id",usuario.id);
         fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
           method: 'PUT',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        }).then(() => {
+          body: formData
+        }).then((res) => {
           // history.go(-1);
-          let nuevo = {nombre: usuario.nombre,
+          return res.json()
+        
+        }).then((data) =>{
+          let nuevo = { id: usuario.id,
+                        nombre: usuario.nombre,
                         edad: usuario.edad,
                         ubicacion: usuario.ubicacion,
                         descripcion: usuario.descripcion,
-                        imagen: imagen,
+                        imagen: data,
                         fecha: usuario.fecha};
           setUser(nuevo);
-          history.push('/perfil');
         })
       }
 
@@ -85,7 +91,7 @@ const Perfil = () => {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Selecciona una nueva foto de perfil</Form.Label>
-                            <Form.Control type="file" accept=".png, .jpg, .jpeg" name="imagen" onChange={(e)=>setImagen(e.target.value)} />
+                            <Form.Control type="file" accept=".png, .jpg, .jpeg" name="imagen" onChange={(e)=>handleFileSelected(e)} />
                         </Form.Group>
                         <Button variant="success" type="submit"> Actualizar foto de perfil </Button>
                     </Form>

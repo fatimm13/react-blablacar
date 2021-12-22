@@ -23,7 +23,7 @@ const EditarPerfil = () => {
       body: JSON.stringify(body)
     }).then(() => {
       // history.go(-1);
-      let nuevo = {nombre: nombre, edad: edad, ubicacion: ubicacion, descripcion: descripcion, imagen: usuario.imagen, fecha: usuario.fecha};
+      let nuevo = {id: usuario.id, nombre: nombre, edad: edad, ubicacion: ubicacion, descripcion: descripcion, imagen: usuario.imagen, fecha: usuario.fecha};
       setUser(nuevo);
       history.push('/perfil');
     })
