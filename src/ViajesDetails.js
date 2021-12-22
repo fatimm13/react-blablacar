@@ -3,13 +3,15 @@ import useFetch from "./useFetch";
 import { Button, Card, Col, Form, ListGroup, Row, Spinner } from "react-bootstrap";
 import MapRoute from "./MapRoute";
 import { useState } from "react";
+import { useGlobalState } from 'state-pool';
 const ViajesDetails = () => {
+  const [usuario] = useGlobalState("user");
   const { id } = useParams();
   const { data: viaje, error, isPending } = useFetch('http://localhost:5000/viajes/' + id);
   const history = useHistory();
   const [numero, setNumero] = useState(0);
   const handleClick = () => {
-    fetch('http://localhost:5000/viajes/' + viaje.id, {
+    fetch('http://localhost:5000/viajes/' + id, {
       method: 'DELETE'
     }).then(() => {
       history.push('/');
@@ -55,10 +57,12 @@ const ViajesDetails = () => {
                         <Form.Control type="number" min={0} max={viaje.libres} placeholder="Introduzca el número de plazas a reservar." value={numero} onChange={(e)=>cambiarNumero(e.target.value)} />
                   </Form>
                 </ListGroup.Item>
-                <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero }</ListGroup.Item>
+                {usuario.id!==viaje.idConductor && <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero }</ListGroup.Item>}
+                {usuario.id===viaje.idConductor && <ListGroup.Item><b>Se trata de su viaje, las plazas reservadas no se le cobrarán, pero la reserva se registrará.</b></ListGroup.Item>}
               </ListGroup>
             </Card.Body>
-            <Button onClick={handleSubmit()} disabled={numero<=0}>Reservar</Button>
+            <Button onClick={()=>handleSubmit()} disabled={numero<=0}>Reservar</Button>
+            {usuario.id===viaje.idConductor && <Button variant="danger" onClick={()=>handleClick()} >Eliminar Viaje</Button>}
             </Card>
             
           </Col>

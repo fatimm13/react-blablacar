@@ -26,3 +26,6 @@
   width: 600px;
   height: 400px;
 }
+.Map-Marker{
+  display: inline-block;
+}

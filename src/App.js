@@ -8,11 +8,11 @@ import Footer from './Footer';
 import MapInput from './MapInput';
 import CreateUsuario from './CreateUsuario';
 import ViajesListar from './ViajesListar';
-import MapRoute from './MapRoute';
-
 import { useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
 import EditarPerfil from './EditarPerfil';
+import GasolinerasCercanas from './GasolinerasCercanas';
+import LocalizaGasolineras from './BuscarGasolinerasCercanas';
 
 
 function App() {
@@ -60,7 +60,8 @@ function App() {
               </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">
-                  {/*<MapRoute origen={{ lat: 36.4167, lng: -3.70325  }} destino={{ lat: 36.4167, lng: -4.70325  }}/>*/}
+                  <LocalizaGasolineras/>
+                  {/*<GasolinerasCercanas posicion={{lat:36.7513044,lng:-4.4902875}}/>*/}
                   <NotFound/>
 
               </Route>
