@@ -10,17 +10,15 @@ import CreateUsuario from './CreateUsuario';
 import ViajesListar from './ViajesListar';
 import MapRoute from './MapRoute';
 
-import {useGlobalState} from 'state-pool';
+import { useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
 import EditarPerfil from './EditarPerfil';
-import { Button } from 'react-bootstrap';
-
 
 
 function App() {
 
   useGlobalState("user",{default: null, persist: true});
-
+  
   return (
     <Router>
       <div className="App">
