@@ -11,7 +11,6 @@ import ViajesListar from './ViajesListar';
 import { useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
 import EditarPerfil from './EditarPerfil';
-import GasolinerasCercanas from './GasolinerasCercanas';
 import LocalizaGasolineras from './BuscarGasolinerasCercanas';
 
 
@@ -58,10 +57,12 @@ function App() {
               <Route path="/editPerfil">
                 <EditarPerfil/>
               </Route>
+              <Route path="/gasolineras">
+                <LocalizaGasolineras/>
+              </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">
-                  <LocalizaGasolineras/>
-                  {/*<GasolinerasCercanas posicion={{lat:36.7513044,lng:-4.4902875}}/>*/}
+                  
                   <NotFound/>
 
               </Route>

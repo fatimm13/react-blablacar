@@ -25,12 +25,14 @@ const MiNavbar = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
 
-                {user &&
+                
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto">
-                        <Nav.Link onClick={()=>goTo("/listarViajes")}>Buscar Viajes</Nav.Link>
-                        <Nav.Link onClick={()=>goTo("/crearViaje")}>Crear Viaje </Nav.Link>
+                        {user &&<Nav.Link onClick={()=>goTo("/listarViajes")}>Buscar Viajes</Nav.Link>}
+                        {user &&<Nav.Link onClick={()=>goTo("/crearViaje")}>Crear Viaje </Nav.Link>}
+                        <Nav.Link onClick={()=>goTo("/gasolineras")}> Gasolineras </Nav.Link>
                     </Nav>
+                {user &&
                     <Nav>
                         <img src={user.imagen} width="35" height="35" className="d-inline-block align-top" alt="Foto de perfil del usuario" />
                         
@@ -42,9 +44,9 @@ const MiNavbar = () => {
                         </NavDropdown>
                         
                     </Nav>
-                   
+                }   
                 </Navbar.Collapse>
-                }
+                
             </Container>
         </Navbar>
     );
