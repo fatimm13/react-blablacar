@@ -6,7 +6,6 @@ const ViajesList = ({ viajes }) => {
   const goTo = (url)=>{
     history.push(url)
   } 
-
   return (
 
     <Container className="viajes-list">

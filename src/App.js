@@ -12,6 +12,7 @@ import { useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
 import EditarPerfil from './EditarPerfil';
 import LocalizaGasolineras from './BuscarGasolinerasCercanas';
+import Search from './Search';
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
               </Route>
 
               <Route path="/listarViajes">
-                <ViajesListar/>
+                <Search/>
               </Route>
               
               <Route path="/perfil">

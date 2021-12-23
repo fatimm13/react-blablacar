@@ -35,7 +35,7 @@ const MapInput = () => {
         msg+="El precio no puede ser 0 o negativo. \n";
       }
       if(fecha==="" || hora===""){
-        msg+="Inserte fecha y/o hora. "
+        msg+="Inserte fecha y/o hora. ";
       }
       if(msg===""){
         var date = fecha+" "+hora
