@@ -13,7 +13,9 @@ const ViajesListarUrl = (datos) => {
       { isPending && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
       { viajes && 
         <Row> 
+            <br/>
             <h1>Resultados de búsqueda:</h1>
+            <br/>
             {viajes.length === 0 && <p>No se han encontrado resultados.</p>}
             <ViajesList viajes={viajes} /> 
         </Row>

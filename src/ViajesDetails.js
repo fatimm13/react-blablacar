@@ -24,9 +24,9 @@ const ViajesDetails = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = {reservas: numero};
+    const body = {reservadas: parseInt(numero)};
 
-    fetch('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+viaje.id, {
+    fetch('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+id, {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
@@ -50,10 +50,13 @@ const ViajesDetails = () => {
               <ListGroup.Item><b>Destino:</b> { viaje.destino }</ListGroup.Item>
               <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>
               <ListGroup.Item><b>Precio:</b> {viaje.precio}€</ListGroup.Item>
+              <ListGroup.Item><b>Fecha:</b> {new Date(viaje.horaDeSalida).toLocaleDateString("es-ES")}</ListGroup.Item>
+              <ListGroup.Item><b>Hora:</b> {new Date(viaje.horaDeSalida).toLocaleTimeString("es-ES")}</ListGroup.Item>
             </ListGroup>
             </Card>
           </Col>
           <Col >
+            
             <MapRoute origen={{ lat: viaje.coordOrigen[0], lng: viaje.coordOrigen[1] }} destino={{ lat: viaje.coordDestino[0], lng: viaje.coordDestino[1] }}/>
           </Col>
           <Col>
@@ -67,7 +70,7 @@ const ViajesDetails = () => {
                         <Form.Control type="number" min={0} max={viaje.libres} placeholder="Introduzca el número de plazas a reservar." value={numero} onChange={(e)=>cambiarNumero(e.target.value)} />
                   </Form>
                 </ListGroup.Item>
-                {usuario.id!==viaje.idConductor && <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero }</ListGroup.Item>}
+                {usuario.id!==viaje.idConductor && <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero } €</ListGroup.Item>}
                 {usuario.id===viaje.idConductor && <ListGroup.Item><b>Se trata de su viaje, las plazas reservadas no se le cobrarán, pero la reserva se registrará.</b></ListGroup.Item>}
               </ListGroup>
             </Card.Body>

@@ -1,13 +1,14 @@
 import { Card, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import {useGlobalState} from 'state-pool';
 
 const UsuarioList = ({ usuarios }) => {
 
     const [user, setUser] = useGlobalState("user");
-    
+    const history = useHistory();
     let ponerUser = (e) => {
         setUser(e)
-        console.log(user)
+        history.push("/listarViajes")
     }
 
     return (
@@ -30,6 +31,7 @@ const UsuarioList = ({ usuarios }) => {
                             <Button variant="primary" onClick={()=>ponerUser(usuario)}>Seleccionar</Button>
                             
                         </Card>
+                        <br/>
                     </div>
                 )
             })}

@@ -39,7 +39,7 @@ const MiNavbar = () => {
                         <NavDropdown title={"Perfil de "+user.nombre} id="collasible-nav-dropdown">
                             <NavDropdown.Item onClick={()=>goTo("/perfil")}>Ver perfil</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=>goTo("/editPerfil")}>Editar perfil</NavDropdown.Item>
-                            <NavDropdown.Item onClick={()=>goTo("/viajesCreados")}>Viajes creados por ti</NavDropdown.Item>
+                            <NavDropdown.Item onClick={()=>goTo("/viajesCreados")}>Viajes creados</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=>goTo("/reservas")}>Tus reservas</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item onClick={cerrarSesion}> Cerrar sesi&oacute;n </NavDropdown.Item>

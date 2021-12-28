@@ -47,8 +47,7 @@ const Search = () => {
             <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1">🔎</InputGroup.Text>
                 <FormControl placeholder="Buscar nombre" aria-label="Recipient's username" aria-describedby="basic-addon2" value={nombre} onChange={(e)=>{setNombre(e.target.value)}} />
-                
-                
+                <Button onClick={limpiarFiltro} variant="outline-danger" id="button-addon2"> Limpiar Filtro </Button>
                 <Button onClick={handleSubmit} variant="outline-secondary" id="button-addon2"> Buscar </Button>
             </InputGroup>
             <InputGroup>
@@ -70,7 +69,8 @@ const Search = () => {
                 </Form.Group>
                 
             </InputGroup>
-            <Button onClick={limpiarFiltro} variant="outline-danger" id="button-addon2"> Limpiar Filtro </Button>
+            <br/>
+            
             
             
             

@@ -1,4 +1,4 @@
-import { Container, Card, ListGroup, Button } from 'react-bootstrap';
+import { Card, ListGroup, Button, Row } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import { useGlobalState } from 'state-pool';
 
@@ -19,9 +19,10 @@ const ReservaList = ({ reservas }) => {
   
   return (
 
-    <Container className="viajes-list">
+    <Row >
       {reservas.map(reserva => (
-        <div className="blog-preview" key={reserva.id} >
+        <div className="col-md-4" key={reserva.id} >
+          <br/>
           <Card style={{ width: '18rem' }}>
             <Card.Header><h4>{ reserva.nombre }</h4></Card.Header>
             <ListGroup variant="flush">
@@ -33,6 +34,8 @@ const ReservaList = ({ reservas }) => {
               <ListGroup.Item><b>Destino:</b> { reserva.destino }</ListGroup.Item>
               <ListGroup.Item><b>Plazas libres:</b> {reserva.libres}</ListGroup.Item>
               <ListGroup.Item><b>Precio:</b> {reserva.precio}€</ListGroup.Item>
+              <ListGroup.Item><b>Fecha:</b> {new Date(reserva.horaDeSalida).toLocaleDateString("es-ES")}</ListGroup.Item>
+              <ListGroup.Item><b>Hora:</b> {new Date(reserva.horaDeSalida).toLocaleTimeString("es-ES")}</ListGroup.Item>
             </ListGroup>
             <Button variant="primary" onClick={()=>goTo("/viajes/"+ reserva.id)}>Ver detalles</Button>
             <Button variant="danger" onClick={()=>handleClick('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+reserva.id)} >Eliminar Reserva</Button>
@@ -40,7 +43,7 @@ const ReservaList = ({ reservas }) => {
           </Card>
         </div>
       ))}
-    </Container>
+    </Row>
   );
 }
  
