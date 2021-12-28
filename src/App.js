@@ -7,17 +7,18 @@ import MiNavbar from './MiNavbar';
 import Footer from './Footer';
 import MapInput from './MapInput';
 import CreateUsuario from './CreateUsuario';
-import ViajesListar from './ViajesListar';
 import { useGlobalState} from 'state-pool';
 import Perfil from './Perfil';
 import EditarPerfil from './EditarPerfil';
 import LocalizaGasolineras from './BuscarGasolinerasCercanas';
 import Search from './Search';
+import ViajesListarUrl from './ViajesListarUrl';
+import ReservasListarUrl from './ReservasListarUrl';
 
 
 function App() {
 
-  useGlobalState("user",{default: null, persist: true});
+  const [usuario] = useGlobalState("user",{default: null, persist: true});
   
   return (
     <Router>
@@ -60,6 +61,12 @@ function App() {
               </Route>
               <Route path="/gasolineras">
                 <LocalizaGasolineras/>
+              </Route>
+              <Route path="/viajesCreados">
+                {usuario && <ViajesListarUrl url={`http://127.0.0.1:5000/usuarios/${usuario.id}/viajesConductor`}/>}
+              </Route>
+              <Route path="/reservas">
+                {usuario && <ReservasListarUrl url={`http://127.0.0.1:5000/usuarios/${usuario.id}/reservados`}/>}
               </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">

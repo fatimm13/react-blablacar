@@ -15,7 +15,7 @@ const EditarPerfil = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = {nombre, edad, ubicacion, descripcion};
+    const body = {nombre, "edad":parseInt(edad), ubicacion, descripcion};
 
     fetch('http://localhost:5000/usuarios/'+usuario.id, {
       method: 'PUT',

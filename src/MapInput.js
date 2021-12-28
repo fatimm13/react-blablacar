@@ -40,7 +40,7 @@ const MapInput = () => {
       if(msg===""){
         var date = fecha+" "+hora
         
-        const body = {"nombreConductor":usuario.nombre,"idConductor":usuario.id,nombre, plazas, libres, precio, "latOrig":origen.lat,"latDest":destino.lat, "longOrig":origen.lng,"longDest":destino.lng, "hora":date };
+        const body = {"nombreConductor":usuario.nombre,"idConductor":usuario.id,nombre,"plazas":parseInt(plazas), "libres":parseInt(libres), "precio":parseFloat(precio), "latOrig":origen.lat,"latDest":destino.lat, "longOrig":origen.lng,"longDest":destino.lng, "hora":date };
         console.log(body);
         fetch('http://localhost:5000/viajes', {
           method: 'POST',

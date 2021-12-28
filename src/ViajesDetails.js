@@ -18,12 +18,22 @@ const ViajesDetails = () => {
     }) 
   }
   const cambiarNumero = (n)=>{
-    n = n>viaje.libres?viaje.libres:n
-    n = n<0?0:n
-    setNumero(n)
+    var e = n>viaje.libres?viaje.libres:n
+    e = e<0?0:e
+    setNumero(e)
   }
-  const handleSubmit = () => {
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const body = {reservas: numero};
+
+    fetch('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+viaje.id, {
+      method: 'PUT',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(() => {
+      history.push('/');
+    })
+
   }
   return (
     <div className="blog-details">
@@ -61,7 +71,7 @@ const ViajesDetails = () => {
                 {usuario.id===viaje.idConductor && <ListGroup.Item><b>Se trata de su viaje, las plazas reservadas no se le cobrarán, pero la reserva se registrará.</b></ListGroup.Item>}
               </ListGroup>
             </Card.Body>
-            <Button onClick={()=>handleSubmit()} disabled={numero<=0}>Reservar</Button>
+            <Button onClick={handleSubmit} disabled={ numero <= 0 || numero > viaje.libres }>Reservar</Button>
             {usuario.id===viaje.idConductor && <Button variant="danger" onClick={()=>handleClick()} >Eliminar Viaje</Button>}
             </Card>
             

@@ -13,7 +13,7 @@ const CreateUsuario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = {nombre, email, contrasena, edad, ubicacion, descripcion};
+    const body = {nombre, email, contrasena, "edad": parseInt(edad), ubicacion, descripcion};
 
     fetch('http://localhost:5000/usuarios', {
       method: 'POST',
