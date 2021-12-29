@@ -1,6 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
-import { Button, Card, Col, Form, ListGroup, Row, Spinner } from "react-bootstrap";
+import { Button, Card, Col, Form, ListGroup, Row, Spinner, Modal } from "react-bootstrap";
 import MapRoute from "./MapRoute";
 import { useState } from "react";
 import { useGlobalState } from 'state-pool';
@@ -10,6 +10,11 @@ const ViajesDetails = () => {
   const { data: viaje, error, isPending } = useFetch('http://localhost:5000/viajes/' + id);
   const history = useHistory();
   const [numero, setNumero] = useState(0);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleClick = () => {
     fetch('http://localhost:5000/viajes/' + id, {
       method: 'DELETE'
@@ -77,15 +82,24 @@ const ViajesDetails = () => {
                 ------------------------- <br/>
                 Precio total (€): { viaje.precio * numero }
               </div>
-              
-
             </Card.Body>
+            <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Eliminar viaje</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>¿Est&aacute;s seguro de que desea eliminar el viaje { viaje.nombre}? </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}> Cancelar </Button>
+                            <Button variant="primary" onClick={()=>handleClick()}> Borrar </Button>
+                        </Modal.Footer>
+              </Modal>
+
             <ListGroup variant="flush">
                 {usuario.id!==viaje.idConductor && <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero } €</ListGroup.Item>}
                 {usuario.id===viaje.idConductor && <ListGroup.Item><b>Se trata de su viaje, las plazas reservadas no se le cobrarán, pero la reserva se registrará.</b></ListGroup.Item>}
             </ListGroup>
             <Button onClick={handleSubmit} disabled={ numero <= 0 || numero > viaje.libres }>Reservar</Button>
-            {usuario.id===viaje.idConductor && <Button variant="danger" onClick={()=>handleClick()} >Eliminar Viaje</Button>}
+            {usuario.id===viaje.idConductor && <Button variant="danger" onClick={handleShow}>Eliminar Viaje</Button>}
             </Card>
             
           </Col>

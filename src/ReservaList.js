@@ -35,7 +35,7 @@ const ReservaList = ({ reservas }) => {
                 <ListGroup.Item><b>Plazas reservadas:</b> {reserva.reservadas}</ListGroup.Item>
                 <ListGroup.Item><b>Hora:</b> {new Date(reserva.horaDeSalida).toLocaleTimeString("es-ES")}</ListGroup.Item>
                 <ListGroup.Item><b>Fecha:</b> {new Date(reserva.horaDeSalida).toLocaleDateString("es-ES")}</ListGroup.Item>
-                <ListGroup.Item><b>Precio:</b> {reserva.precio}€</ListGroup.Item>
+                <ListGroup.Item><b>Precio/plaza:</b> {reserva.precio}€</ListGroup.Item>
                 <ListGroup.Item><b>Origen:</b> { reserva.origen }</ListGroup.Item>
                 <ListGroup.Item><b>Destino:</b> { reserva.destino }</ListGroup.Item>
                 <ListGroup.Item><b>Viaje de:</b> { reserva.nombreConductor }</ListGroup.Item>

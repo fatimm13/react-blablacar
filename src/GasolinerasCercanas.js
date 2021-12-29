@@ -23,13 +23,13 @@ const GasolinerasCercanas = (datos) => {
             <h1>Listado de precios de las gasolineras cercanas</h1>
             <br/> <br/><br/> <br/>
         <Col xs={1}></Col>
-        <Col xs={11}>
-        <Row  >
+        <Col xs={15}>
+        <Row>
             { error && <div>{ error }</div> }
             { isPending && <div>BUSCANDO GASOLINERAS <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
             
             {gasolineras && 
-                <MapContainer  center={{ lat: posicion.lat, lng: posicion.lng }} zoom={13} scrollWheelZoom={false}>
+                <MapContainer  center={{ lat: posicion.lat, lng: posicion.lng }} zoom={13} scrollWheelZoom={true}>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
