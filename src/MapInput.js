@@ -89,61 +89,60 @@ const MapInput = () => {
                 { origen && <Marker id = "origen" position={origen} > <Popup>Origen</Popup> </Marker> }
                 { destino && <Marker id = "destino" position={destino} icon={greenIcon}> <Popup>Destino</Popup> </Marker> }
             </div>
-            
         );
       }
       
       return(
-        <div>
+        <div className="createViaje">
           {mensaje && <Alert variant='warning'>{mensaje}</Alert>}
           <h1>Crear viaje</h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicName">
-                  <Form.Label>Nombre del viaje</Form.Label>
-                  <Form.Control type="text" placeholder="Introduzca el nombre de su viaje." value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
+          <div className="form-container">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Nombre del viaje</Form.Label>
+                    <Form.Control type="text" placeholder="Introduzca el nombre de su viaje." value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
+                </Form.Group>
+              <Row className="mb-3">
+                <Form.Group  as={Col} md="5" controlId="formPlazas">
+                          <Form.Label>Plazas totales</Form.Label>
+                          <Form.Control type="number" placeholder="Introduzca las plazas del vehiculo." value={plazas} onChange={(e)=>setPlazas(e.target.value)} />
+                </Form.Group>
+                <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formLibres">
+                          <Form.Label>Plazas libres</Form.Label>
+                          <Form.Control type="number" placeholder="Introduzca las plazas disponibles." value={libres} onChange={(e)=>setLibres(e.target.value)} />
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group  as={Col} md="5" controlId="formFecha">
+                          <Form.Label>Fecha</Form.Label>
+                          <Form.Control type="date" placeholder="Fecha de salida" value={fecha} onChange={(e)=>setFecha(e.target.value)} />
+                </Form.Group>
+                <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formHora">
+                          <Form.Label>Hora</Form.Label>
+                          <Form.Control type="time" placeholder="Hora de salida" value={hora} onChange={(e)=>setHora(e.target.value)} />
+                </Form.Group>
+              </Row>
+              <Form.Group className="mb-3" controlId="formPrecio">
+                        <Form.Label>Precio por plaza</Form.Label>
+                        <Form.Control type="number" placeholder="Introduzca el precio por plaza del vehiculo." value={precio} onChange={(e)=>setPrecio(e.target.value)} />
               </Form.Group>
-            <Row className="mb-3">
-              <Form.Group  as={Col} md="5" controlId="formPlazas">
-                        <Form.Label>Plazas totales</Form.Label>
-                        <Form.Control type="number" placeholder="Introduzca las plazas del vehiculo." value={plazas} onChange={(e)=>setPlazas(e.target.value)} />
-              </Form.Group>
-              <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formLibres">
-                        <Form.Label>Plazas libres</Form.Label>
-                        <Form.Control type="number" placeholder="Introduzca las plazas disponibles." value={libres} onChange={(e)=>setLibres(e.target.value)} />
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group  as={Col} md="5" controlId="formFecha">
-                        <Form.Label>Fecha</Form.Label>
-                        <Form.Control type="date" placeholder="Fecha de salida" value={fecha} onChange={(e)=>setFecha(e.target.value)} />
-              </Form.Group>
-              <Form.Group as={Col} md={{ span: 5, offset: 2 }} controlId="formHora">
-                        <Form.Label>Hora</Form.Label>
-                        <Form.Control type="time" placeholder="Hora de salida" value={hora} onChange={(e)=>setHora(e.target.value)} />
-              </Form.Group>
-            </Row>
-            <Form.Group className="mb-3" controlId="formPrecio">
-                      <Form.Label>Precio por plaza</Form.Label>
-                      <Form.Control type="number" placeholder="Introduzca el precio por plaza del vehiculo." value={precio} onChange={(e)=>setPrecio(e.target.value)} />
-            </Form.Group>
-            <Row className="mb-3">
-              <Col></Col>
-              <Form.Group  as={Col} >
-                  <Button variant="primary" disabled={selOr} onClick={handleClick} >Origen</Button>{' '}
-                  <Button variant="success" disabled={!selOr} onClick={handleClick}>Destino</Button>{' '}
-                  <MapContainer center={{ lat: 40.4167, lng: -3.70325  }} zoom={13} scrollWheelZoom={false}>
-                  <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  <LocationMarker />
-                  </MapContainer>
-              </Form.Group>
-              <Col></Col>
-            </Row>
-            <br/>
-            <Button variant="primary" type="submit"> Crear viaje </Button>
-          </Form>
+              <Row className="mb-3">
+                <Form.Group as={Col} >
+                    <Button variant="primary" disabled={selOr} onClick={handleClick} >Origen</Button>{' '}
+                    <Button variant="success" disabled={!selOr} onClick={handleClick}>Destino</Button>{' '}
+                    <MapContainer center={{ lat: 40.4167, lng: -3.70325  }} zoom={13} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <LocationMarker />
+                    </MapContainer>
+                </Form.Group>
+              </Row>
+              <br/>
+              <Button variant="primary" type="submit"> Crear viaje </Button>
+            </Form>
+          </div>
             
         </div>
       );

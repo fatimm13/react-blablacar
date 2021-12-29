@@ -36,44 +36,54 @@ const ViajesDetails = () => {
 
   }
   return (
-    <div className="blog-details">
+    <div className="viajes-details">
+      <h1> Detalles del viaje: </h1>
+      <br/> <br/>
       { isPending && <Spinner animation="border" variant="dark" /> }
       { error && <div>{ error }</div> }
       { viaje && (
         <Row className="mb-3">
           <Col>
-            <Card style={{  height: '25rem' }}>
-            <Card.Header><h4>{ viaje.nombre }</h4></Card.Header>
-            <ListGroup variant="flush">
-              <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor }</ListGroup.Item>
-              <ListGroup.Item><b>Origen:</b> { viaje.origen }</ListGroup.Item>
-              <ListGroup.Item><b>Destino:</b> { viaje.destino }</ListGroup.Item>
-              <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>
-              <ListGroup.Item><b>Precio:</b> {viaje.precio}€</ListGroup.Item>
-              <ListGroup.Item><b>Fecha:</b> {new Date(viaje.horaDeSalida).toLocaleDateString("es-ES")}</ListGroup.Item>
-              <ListGroup.Item><b>Hora:</b> {new Date(viaje.horaDeSalida).toLocaleTimeString("es-ES")}</ListGroup.Item>
-            </ListGroup>
+            <Card className="bg-light" style={{ width: '95%', height: '100%' }}>
+              <Card.Body>
+                <Card.Title><h4>{ viaje.nombre }</h4></Card.Title>
+              </Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor }</ListGroup.Item>
+                <ListGroup.Item><b>Origen:</b> { viaje.origen }</ListGroup.Item>
+                <ListGroup.Item><b>Destino:</b> { viaje.destino }</ListGroup.Item>
+                <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>
+                <ListGroup.Item><b>Precio:</b> {viaje.precio}€</ListGroup.Item>
+                <ListGroup.Item><b>Fecha:</b> {new Date(viaje.horaDeSalida).toLocaleDateString("es-ES")}</ListGroup.Item>
+                <ListGroup.Item><b>Hora:</b> {new Date(viaje.horaDeSalida).toLocaleTimeString("es-ES")}</ListGroup.Item>
+              </ListGroup>
             </Card>
           </Col>
-          <Col >
-            
+          <Col>
             <MapRoute origen={{ lat: viaje.coordOrigen[0], lng: viaje.coordOrigen[1] }} destino={{ lat: viaje.coordDestino[0], lng: viaje.coordDestino[1] }}/>
           </Col>
           <Col>
-          <Card style={{  height: '25rem' }}>
-            <Card.Header>Reserva</Card.Header>
+          <Card style={{ width: '95%', height: '100%' }}>
+            <Card.Header><h4>Realizar reserva:</h4></Card.Header>
             <Card.Body>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Form>
-                    <Form.Label>Número de plazas</Form.Label>
-                        <Form.Control type="number" min={0} max={viaje.libres} placeholder="Introduzca el número de plazas a reservar." value={numero} onChange={(e)=>cambiarNumero(e.target.value)} />
-                  </Form>
-                </ListGroup.Item>
+              <Form>
+                <Form.Label>Número de plazas</Form.Label>
+                <Form.Control type="number" min={0} max={viaje.libres} placeholder="Introduzca el número de plazas a reservar." value={numero} onChange={(e)=>cambiarNumero(e.target.value)} />
+              </Form>
+              <div align="right">
+                <br/> <br/>
+                Precio (€) por plaza: {viaje.precio} <br/>
+                x {numero} <br/>
+                ------------------------- <br/>
+                Precio total (€): { viaje.precio * numero }
+              </div>
+              
+
+            </Card.Body>
+            <ListGroup variant="flush">
                 {usuario.id!==viaje.idConductor && <ListGroup.Item><b>Precio total:</b> { viaje.precio * numero } €</ListGroup.Item>}
                 {usuario.id===viaje.idConductor && <ListGroup.Item><b>Se trata de su viaje, las plazas reservadas no se le cobrarán, pero la reserva se registrará.</b></ListGroup.Item>}
-              </ListGroup>
-            </Card.Body>
+            </ListGroup>
             <Button onClick={handleSubmit} disabled={ numero <= 0 || numero > viaje.libres }>Reservar</Button>
             {usuario.id===viaje.idConductor && <Button variant="danger" onClick={()=>handleClick()} >Eliminar Viaje</Button>}
             </Card>
@@ -82,6 +92,8 @@ const ViajesDetails = () => {
         </Row>
         
       )}
+      <br/>
+      <br/>
     </div>
   );
 }

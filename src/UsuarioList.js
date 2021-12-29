@@ -1,4 +1,4 @@
-import { Card, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, Col, Button, Row, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import {useGlobalState} from 'state-pool';
 
@@ -12,13 +12,12 @@ const UsuarioList = ({ usuarios }) => {
     }
 
     return (
-
-        <Row>
+        <Row xs={1} md={4} className="g-4">
             {usuarios.map(usuario =>{
                 return (
-                    <div key= {usuario.id} className="col-md-4 ">
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={usuario.imagen} />
+                    <Col>
+                        <Card style={{ width: '18rem', height: '100%' }}>
+                            <Card.Img variant="top" src={usuario.imagen} style={{ width: '18rem', height: '18rem' }} />
                             <Card.Body>
                                 <Card.Title>{ usuario.nombre}</Card.Title>
                                 <Card.Text> { usuario.descripcion} </Card.Text>
@@ -29,14 +28,11 @@ const UsuarioList = ({ usuarios }) => {
                                 <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                             </ListGroup>
                             <Button variant="primary" onClick={()=>ponerUser(usuario)}>Seleccionar</Button>
-                            
                         </Card>
-                        <br/>
-                    </div>
+                    </Col>
                 )
             })}
         </Row>
-
     )
 }
 

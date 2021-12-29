@@ -20,6 +20,8 @@ const GasolinerasCercanas = (datos) => {
     }
     return (  
         <Row>
+            <h1>Listado de precios de las gasolineras cercanas</h1>
+            <br/> <br/><br/> <br/>
         <Col xs={1}></Col>
         <Col xs={11}>
         <Row  >
@@ -50,6 +52,7 @@ const GasolinerasCercanas = (datos) => {
                 </MapContainer>
             }
         </Row>
+        <br/> <br/><br/>
         </Col>
         </Row>
     );

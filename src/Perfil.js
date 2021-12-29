@@ -21,11 +21,13 @@ const Perfil = () => {
             setUser(null);
         })
     }
+
     const handleFileSelected = (e) => {
         const files = Array.from(e.target.files)
         setFile(files[0])
         console.log("files:", files[0])
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let formData = new FormData();   
@@ -48,16 +50,32 @@ const Perfil = () => {
                         fecha: usuario.fecha};
           setUser(nuevo);
         })
-      }
+    }
+
+    const handleDeleteFoto = () => { 
+        fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
+          method: 'DELETE'
+        }).then(() => {
+            // history.push('/');
+            let nuevo = { id: usuario.id,
+                nombre: usuario.nombre,
+                edad: usuario.edad,
+                ubicacion: usuario.ubicacion,
+                descripcion: usuario.descripcion,
+                imagen: "https://res.cloudinary.com/dugtth6er/image/upload/v1639832477/perfil_hont25.png",
+                fecha: usuario.fecha};
+            setUser(nuevo);
+        })
+    }
 
     return ( 
         
         <Container>
+            <h2>Datos de { usuario.nombre}</h2>
+            <br/>
             <Row className="mb-3">
                 <Col>
-                    <h2>Datos de { usuario.nombre}</h2>
-                    <br/>
-                    <Card style={{ width: '30rem', height: '30rem' }}>
+                    <Card style={{ width: '90%', height: '78%' }}>
                         <Card.Body>
                             <Card.Title>Descripci&oacute;n:</Card.Title>
                             <br/>
@@ -68,33 +86,46 @@ const Perfil = () => {
                             <ListGroupItem><b>Localidad:</b> { usuario.ubicacion} </ListGroupItem>
                             <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                         </ListGroup>
-                        <Button variant="primary" href="editPerfil">Editar datos</Button>
-                        <Button variant="danger" onClick={handleShow}>Eliminar perfil</Button>
-
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Eliminar usuario</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>¿Est&aacute;s seguro de que desea eliminar el usuario { usuario.nombre}? </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}> Cancelar </Button>
-                                <Button variant="primary" onClick={handleDelete}> Borrar </Button>
-                            </Modal.Footer>
-                        </Modal>
+                        <Button variant="success" href="editPerfil">Editar datos del perfil</Button>
                     </Card>
+
+                    <Card style={{ width: '90%' }}>
+                        <Button variant="primary" href="viajesCreados">Ver viajes creados</Button>
+                    </Card>
+
+                    <Card style={{ width: '90%' }}>
+                        <Button variant="primary" href="reservas">Ver viajes reservados</Button>
+                    </Card>
+
+                    <Card style={{ width: '90%' }}>
+                        <Button variant="danger" onClick={handleShow}>Eliminar perfil</Button>
+                    </Card>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Eliminar usuario</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>¿Est&aacute;s seguro de que desea eliminar el usuario { usuario.nombre}? </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}> Cancelar </Button>
+                            <Button variant="primary" onClick={handleDelete}> Borrar </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </Col>
                 
                 <Col>
-                    <Image style={{ width: '30rem', height: '30rem' }} src={usuario.imagen} />
+                    <Image style={{ width: '25rem', height: '25rem' }} src={usuario.imagen} />
                     <br/>
                     <br/>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Selecciona una nueva foto de perfil</Form.Label>
+                            <Form.Label>Selecciona una nueva foto de perfil:</Form.Label>
                             <Form.Control type="file" accept=".png, .jpg, .jpeg" name="imagen" onChange={(e)=>handleFileSelected(e)} />
                         </Form.Group>
                         <Button variant="success" type="submit"> Actualizar foto de perfil </Button>
+                        <Button variant="danger" type="reset" onClick={handleDeleteFoto}> Borrar foto de perfil </Button>
                     </Form>
+                    
                 </Col>
             </Row>
         </Container>

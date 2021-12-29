@@ -1,5 +1,4 @@
-import {  Card, ListGroup, Button, Row } from 'react-bootstrap';
-
+import {  Card, ListGroup, Button, Row, Col } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 const ViajesList = ({ viajes }) => {
   const history = useHistory();
@@ -8,12 +7,13 @@ const ViajesList = ({ viajes }) => {
   } 
   return (
 
-    <Row >
+    <Row xs={1} md={4} className="g-4">
       {viajes.map(viaje => (
-        <div className="col-md-4" key={viaje.id} >
-          <br/>
-          <Card style={{ width: '18rem' }}>
-            <Card.Header><h4>{ viaje.nombre }</h4></Card.Header>
+        <Col>
+          <Card className="bg-light" style={{ width: '20rem', height: '100%' }}>
+            <Card.Body>
+              <Card.Title><h4>{ viaje.nombre }</h4></Card.Title>
+            </Card.Body>
             <ListGroup variant="flush">
               <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor }</ListGroup.Item>
               <ListGroup.Item><b>Origen:</b> { viaje.origen }</ListGroup.Item>
@@ -26,7 +26,7 @@ const ViajesList = ({ viajes }) => {
             <Button variant="primary" onClick={()=>goTo("/viajes/"+ viaje.id)}>Ver detalles</Button>
           </Card>
           
-        </div>
+        </Col>
       ))}
     </Row>
   );

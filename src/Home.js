@@ -4,7 +4,6 @@ import useFetch from './useFetch';
 
 function UsuariosListar(usuario) {
  
-
   const { error, isPending, data: usuarios } = useFetch('http://localhost:5000/usuarios')
   
   return (
@@ -16,7 +15,7 @@ function UsuariosListar(usuario) {
       
       <Row>
         <Col>
-          <a href="/crearUsuario" type="button" className="btn btn-primary">
+          <a href="/crearUsuario" type="button" className="btn btn-success">
             Crear usuario
           </a>
         </Col>
@@ -26,8 +25,7 @@ function UsuariosListar(usuario) {
       
       { error && <div>{ error }</div> }
       { isPending && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
-
-      { usuarios && <UsuarioList usuarios={usuarios}  /> }
+      { usuarios && <UsuarioList usuarios={usuarios} /> }
 
     </Container>
   );

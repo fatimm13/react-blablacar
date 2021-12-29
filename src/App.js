@@ -14,6 +14,7 @@ import LocalizaGasolineras from './BuscarGasolinerasCercanas';
 import Search from './Search';
 import ViajesListarUrl from './ViajesListarUrl';
 import ReservasListarUrl from './ReservasListarUrl';
+import NavbarVacia from './NavbarVacia';
 
 
 function App() {
@@ -24,8 +25,7 @@ function App() {
     <Router>
       <div className="App">
           <MiNavbar/>
-          <br/>
-          <br/>
+          <NavbarVacia/>
           <div className="content">
             <Switch>
               {/** Se le pone exact en este caso porque sino para cualquier ruta se entraria a / ya que

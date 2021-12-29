@@ -13,11 +13,11 @@ const ReservasListarUrl = (datos) => {
       { isPending && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
       { reservas && 
         <Row> 
-            <h1>Resultados de búsqueda:</h1>
+            <h2>Resultados de búsqueda:</h2>
             {reservas.length === 0 && <p>No se han encontrado resultados.</p>}
             <ReservaList reservas={reservas} /> 
         </Row>
-        }
+      }
       
     </div>
   );

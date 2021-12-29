@@ -28,6 +28,7 @@ const CreateUsuario = () => {
   return (
     <div className="createUsuario">
       <h1>Registrar usuario</h1>
+      <br/>
       <div className="form-container">
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
@@ -35,15 +36,17 @@ const CreateUsuario = () => {
                 <Form.Control type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Correo electrónico</Form.Label>
                 <Form.Control type="email" placeholder="Introduzca su correo electrónico" value={email} onChange={(e)=>setEmail(e.target.value)} required />
-            </Form.Group>
+              </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" placeholder="Introduzca su contraseña" value={contrasena} onChange={(e)=>setContrasena(e.target.value)} required />
-            </Form.Group>
+              </Form.Group>
+            </Row>
 
             <Row className="mb-3">
                 <Form.Group as={Col} md="3" controlId="formEdad">
@@ -59,8 +62,9 @@ const CreateUsuario = () => {
 
             <Form.Group className="mb-3" controlId="controlTextarea">
                 <Form.Label>Breve descripción</Form.Label>
-                <Form.Control as="textarea" rows={3} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
+                <Form.Control as="textarea" rows={5} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
             </Form.Group>
+            <br/>
 
             <Button variant="primary" type="submit"> Registrar </Button>
 

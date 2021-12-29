@@ -31,13 +31,16 @@ const EditarPerfil = () => {
 
   return (
     <div className="updateUsuario">
-      <h1>Editar usuario</h1>
+      <h1>Editar datos del usuario</h1>
+      <br/>
       <div className="form-container">
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control type="text" placeholder="Introduzca su nombre" value={nombre} onChange={(e)=>setNombre(e.target.value)} required/>
             </Form.Group>
+
+            <br/>
 
             <Row className="mb-3">
                 <Form.Group as={Col} md="3" controlId="formEdad">
@@ -51,10 +54,14 @@ const EditarPerfil = () => {
                 </Form.Group>
             </Row>
 
+            <br/>
+
             <Form.Group className="mb-3" controlId="controlTextarea">
                 <Form.Label>Breve descripción</Form.Label>
-                <Form.Control as="textarea" rows={3} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
+                <Form.Control as="textarea" rows={6} value={descripcion} onChange={(e)=>setDescripcion(e.target.value)} />
             </Form.Group>
+
+            <br/>
 
             <Button variant="primary" type="submit"> Actualizar </Button>
 
