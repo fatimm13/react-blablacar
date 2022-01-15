@@ -1,6 +1,7 @@
 import UsuarioList from './UsuarioList'
 import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import useFetch from './useFetch';
+import Login from './Login';
 
 function UsuariosListar(usuario) {
  
@@ -9,6 +10,9 @@ function UsuariosListar(usuario) {
   return (
 
     <Container>
+
+      <Login/>
+
       <Row className="justify-content-md-center">
         <Col md="auto"><h1>Lista de usuarios disponibles:</h1></Col>
       </Row>
