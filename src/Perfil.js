@@ -2,6 +2,7 @@ import { Card, Col, Button, ListGroup, ListGroupItem, Row, Image, Modal, Form, C
 import { useGlobalState } from 'state-pool';
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { getAuth, deleteUser  } from "firebase/auth";
 
 const Perfil = () => {
     const [usuario, setUser] = useGlobalState("user");
@@ -13,13 +14,28 @@ const Perfil = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleDelete = () => { 
-        fetch('http://localhost:5000/usuarios/'+usuario.id, {
-          method: 'DELETE'
-        }).then(() => {
-            history.push('/');
+
+    const handleDelete = ()=>{
+        let auth = getAuth();
+        let user = auth.currentUser;
+
+        if(user){
+            
+            fetch('http://localhost:5000/usuarios/'+usuario.id, {
+            method: 'DELETE'
+            }).then(() => {
+                history.push('/');
+                deleteUser(user);
+                setUser(null);
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        }else{
+            history.push('/error');
             setUser(null);
-        })
+        }
+
     }
 
     const handleFileSelected = (e) => {

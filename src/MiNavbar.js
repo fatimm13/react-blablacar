@@ -1,6 +1,8 @@
 import { Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
 import {useGlobalState} from 'state-pool';
 import { useHistory } from "react-router-dom";
+import {firebase} from './Firebase';
+import { getAuth, signOut } from "firebase/auth";
 
 const MiNavbar = () => {
 
@@ -13,6 +15,14 @@ const MiNavbar = () => {
 
     const cerrarSesion = ()=>{
         setUser(null)
+        let auth = getAuth();
+        if(auth.currentUser){
+            signOut(auth).then(() => {
+                // Sign-out successful.
+              }).catch((error) => {
+                // An error happened.
+            });
+        }
         history.push("/")
     }
     
