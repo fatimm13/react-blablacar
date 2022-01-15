@@ -27,7 +27,7 @@ const MiNavbar = () => {
     }
     
     return ( 
-        <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar fixed="top" collapseOnSelect expand="lg" bg="primary" variant="dark">
             <Container fluid>
                 <Navbar.Brand href="/">
                     <img alt="" src="https://res.cloudinary.com/dugtth6er/image/upload/v1639832622/HHLogo_g7fywq.png" id="logo" width="30" height="30" className="d-inline-block align-top" /> {' '}
