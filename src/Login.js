@@ -9,51 +9,34 @@ import { useState } from 'react';
 
 const Login = () => {
     const [usuario, setUsuario] = useGlobalState("user");
+    const [token, setToken] = useGlobalState("token");
     const history = useHistory();
     const [error, setError] = useState(null);
 
-    const crearUsuario = (id, name)=>{
-        const body = {"nombre":name, "edad": 18, "ubicacion": "Desconocida", "descripcion":""};
+    const cargarCrearUsuario= (token, nombre, isNew)=>{
 
-        fetch('http://localhost:5000/usuarios/'+id, {
+        fetch('http://localhost:5000/loginUsuario', {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        }).then((res) => {
-            if (!res.ok) { // error coming back from server
-                throw Error('could not fetch the data for that resource');
-            } 
-            return res.json();
-
-        }).then((data)=>{
-            
-            data["id"] = id;
-
-            setUsuario(data);
-            history.push("/editPerfil");
-
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+            body: JSON.stringify({"nombre":nombre})
         })
-        .catch(err => {
-            setError(err.name);
-        })
-    }
-
-    const cargarUsuario= (id)=>{
-
-        fetch("http://localhost:5000/usuarios/"+id)
         .then(res => {
             if (!res.ok) { // error coming back from server
-              throw Error('could not fetch the data for that resource');
+            throw Error('could not fetch the data for that resource');
             }
-           
+        
             return res.json();
         })
         .then(data => {
-            
-            data["id"] = id;
-
+            setToken(token);
             setUsuario(data);
-            history.push("/listarViajes");
+            
+            if(isNew){
+                history.push("/editPerfil");
+            }else{
+                history.push("/listarViajes");
+            }
+
             
             
         })
@@ -80,22 +63,19 @@ const Login = () => {
         signInWithPopup(auth, provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            
+
             const user = result.user;
-            
             const name = user.displayName;
-            
-            const id = user.uid;
             const isNew = getAdditionalUserInfo(result).isNewUser;
+
+            auth.currentUser.getIdToken()
+            .then(data => {
             
-            if(isNew){
-                console.log("Soy nuevo");
-                crearUsuario(id,name);
-            }else{
-                console.log("Soy viejo");
-                cargarUsuario(id);
-            }
+                cargarCrearUsuario(data,name, isNew)
+                
+                
+            })
+
             
             
         }).catch((error) => {

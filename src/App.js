@@ -20,7 +20,7 @@ import NavbarVacia from './NavbarVacia';
 function App() {
 
   const [usuario] = useGlobalState("user",{default: null, persist: true});
-  
+  const [token] = useGlobalState("token",{default: null, persist: true});
   return (
     <Router>
       <div className="App">

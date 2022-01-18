@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 const EditarPerfil = () => {
 
   const [usuario, setUser] = useGlobalState("user");
+  const [token, setToken] = useGlobalState("token");
 
   const [nombre, setNombre] = useState(usuario.nombre);
   const [edad, setEdad] = useState(usuario.edad);
@@ -19,7 +20,7 @@ const EditarPerfil = () => {
 
     fetch('http://localhost:5000/usuarios/'+usuario.id, {
       method: 'PUT',
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify(body)
     }).then(() => {
       // history.go(-1);
