@@ -17,7 +17,9 @@ const ReservaList = ({ reservas }) => {
   } 
   const handleClick = (url) => {
     fetch(url, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {"Authorization": `Bearer ${token}` }
+      
     }).then(() => {
       history.push('/');
     }) 

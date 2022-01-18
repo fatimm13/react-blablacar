@@ -2,10 +2,12 @@ import { Card, Col, Button, ListGroup, ListGroupItem, Row, Image, Modal, Form, C
 import { useGlobalState } from 'state-pool';
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { getAuth, deleteUser  } from "firebase/auth";
+import { getAuth  } from "firebase/auth";
 
 const Perfil = () => {
     const [usuario, setUser] = useGlobalState("user");
+    const [token, setToken] = useGlobalState("token");
+
     const history = useHistory();
     const [file, setFile] = useState(null);
 
@@ -22,11 +24,13 @@ const Perfil = () => {
         if(user){
             
             fetch('http://localhost:5000/usuarios/'+usuario.id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {"Authorization": `Bearer ${token}` }
             }).then(() => {
                 history.push('/');
-                deleteUser(user);
+
                 setUser(null);
+                setToken(null);
             })
             .catch((error) => {
                 console.log(error)
@@ -51,6 +55,7 @@ const Perfil = () => {
         formData.append("id",usuario.id);
         fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
           method: 'PUT',
+          headers: {"Authorization": `Bearer ${token}` },
           body: formData
         }).then((res) => {
           // history.go(-1);
@@ -70,7 +75,8 @@ const Perfil = () => {
 
     const handleDeleteFoto = () => { 
         fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
-          method: 'DELETE'
+          method: 'DELETE',
+          headers: {"Authorization": `Bearer ${token}` }
         }).then(() => {
             // history.push('/');
             let nuevo = { id: usuario.id,

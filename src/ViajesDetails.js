@@ -17,7 +17,8 @@ const ViajesDetails = () => {
 
   const handleClick = () => {
     fetch('http://localhost:5000/viajes/' + id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: { "Authorization": `Bearer ${token}` },
     }).then(() => {
       history.push('/');
     }) 
@@ -33,7 +34,7 @@ const ViajesDetails = () => {
 
     fetch('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+id, {
       method: 'PUT',
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify(body)
     }).then(() => {
       history.push('/');
