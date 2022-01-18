@@ -51,6 +51,7 @@ const MiNavbar = () => {
                             <NavDropdown.Item onClick={()=>goTo("/editPerfil")}>Editar perfil</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=>goTo("/viajesCreados")}>Viajes creados</NavDropdown.Item>
                             <NavDropdown.Item onClick={()=>goTo("/reservas")}>Tus reservas</NavDropdown.Item>
+                            <NavDropdown.Item onClick={()=>goTo("/mensajeria")}>Mensajería</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item onClick={cerrarSesion}> Cerrar sesi&oacute;n </NavDropdown.Item>
                         </NavDropdown>

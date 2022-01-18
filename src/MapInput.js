@@ -15,6 +15,7 @@ const MapInput = () => {
     const [precio, setPrecio] = useState(0);
     const [mensaje, setMensaje] = useState(null);
     const [usuario] = useGlobalState("user");
+    const [token] = useGlobalState("token");
     const [fecha, setFecha] = useState("");
     const [hora, setHora] = useState("");
     const history = useHistory();
@@ -44,7 +45,7 @@ const MapInput = () => {
         console.log(body);
         fetch('http://localhost:5000/viajes', {
           method: 'POST',
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
           body: JSON.stringify(body)
         }).then(() => {
           // history.go(-1);

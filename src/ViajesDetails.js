@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useGlobalState } from 'state-pool';
 const ViajesDetails = () => {
   const [usuario] = useGlobalState("user");
+  const [token] = useGlobalState("token");
   const { id } = useParams();
   const { data: viaje, error, isPending } = useFetch('http://localhost:5000/viajes/' + id);
   const history = useHistory();
@@ -41,6 +42,10 @@ const ViajesDetails = () => {
     })
 
   }
+
+  const goTo = (url)=>{
+    history.push(url)
+  }
   return (
     <div className="viajes-details">
       <h1> Detalles del viaje: </h1>
@@ -55,7 +60,7 @@ const ViajesDetails = () => {
                 <Card.Title><h4>{ viaje.nombre }</h4></Card.Title>
               </Card.Body>
               <ListGroup variant="flush">
-                <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor }</ListGroup.Item>
+                <ListGroup.Item><b>Viaje de:</b> { viaje.nombreConductor } <Button onClick={()=>goTo("/mensajes/" + viaje.idConductor)}>💬</Button></ListGroup.Item>
                 <ListGroup.Item><b>Origen:</b> { viaje.origen }</ListGroup.Item>
                 <ListGroup.Item><b>Destino:</b> { viaje.destino }</ListGroup.Item>
                 <ListGroup.Item><b>Plazas libres:</b> {viaje.libres}</ListGroup.Item>

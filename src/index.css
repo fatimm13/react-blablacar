@@ -38,3 +38,33 @@
 .Map-Marker{
   display: inline-block;
 }
+
+.scrollable{
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.derecha{
+  padding: 10px;
+  word-wrap: break-word;
+  width: 20ch;
+  margin-right: 80px;
+  max-width: 45% !important;
+  background-color: #84b6f4 !important;
+}
+
+.izquierda{
+  padding: 10px;
+  margin-left: 80px;
+  word-wrap: break-word;
+  width: 20ch;
+  max-width: 45% !important;
+  background-color: #80e780 !important;
+}
+
+.text_der{
+  height: 5px;
+  font-size: small;
+  text-align: right;
+}
+

@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const ReservaList = ({ reservas }) => {
   const [usuario] = useGlobalState("user");
+  const [token] = useGlobalState("token");
   const history = useHistory();
   const [show, setShow] = useState(false);
 
