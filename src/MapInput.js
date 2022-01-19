@@ -43,7 +43,7 @@ const MapInput = () => {
         
         const body = {"nombreConductor":usuario.nombre,"idConductor":usuario.id,nombre,"plazas":parseInt(plazas), "libres":parseInt(libres), "precio":parseFloat(precio), "latOrig":origen.lat,"latDest":destino.lat, "longOrig":origen.lng,"longDest":destino.lng, "hora":date };
         console.log(body);
-        fetch('http://localhost:5000/viajes', {
+        fetch('https://flaskhalfwayhome.herokuapp.com/viajes', {
           method: 'POST',
           headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
           body: JSON.stringify(body)

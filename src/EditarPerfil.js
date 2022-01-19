@@ -18,7 +18,7 @@ const EditarPerfil = () => {
     e.preventDefault();
     const body = {nombre, "edad":parseInt(edad), ubicacion, descripcion};
 
-    fetch('http://localhost:5000/usuarios/'+usuario.id, {
+    fetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id, {
       method: 'PUT',
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify(body)

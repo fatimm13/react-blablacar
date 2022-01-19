@@ -54,7 +54,7 @@ const ReservaList = ({ reservas }) => {
               <Modal.Body>¿Est&aacute;s seguro de que desea eliminar su reserva en el viaje { reserva.nombre}? </Modal.Body>
               <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}> Cancelar </Button>
-                  <Button variant="primary" onClick={()=>handleClick('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+reserva.id)}> Borrar </Button>
+                  <Button variant="primary" onClick={()=>handleClick('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id+'/reservas/'+reserva.id)}> Borrar </Button>
               </Modal.Footer>
             </Modal>
 

@@ -8,8 +8,8 @@ import MensajeList from "./MensajeList";
 function MensajesListar() {
   const { id } = useParams();
   const [user, setUser] = useGlobalState("user");
-  const { error, isPending, data: mensajes } = useFetchAuth('http://localhost:5000/mensajes?creador='+user.id+"&destino="+id)
-  const { error2, isPending2, data: usuario } = useFetch('http://localhost:5000/usuarios/'+id)
+  const { error, isPending, data: mensajes } = useFetchAuth('https://flaskhalfwayhome.herokuapp.com/mensajes?creador='+user.id+"&destino="+id)
+  const { error2, isPending2, data: usuario } = useFetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+id)
   return (
 
     <Container>

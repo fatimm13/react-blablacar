@@ -23,7 +23,7 @@ const Perfil = () => {
 
         if(user){
             
-            fetch('http://localhost:5000/usuarios/'+usuario.id, {
+            fetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id, {
             method: 'DELETE',
             headers: {"Authorization": `Bearer ${token}` }
             }).then(() => {
@@ -53,7 +53,7 @@ const Perfil = () => {
         let formData = new FormData();   
         formData.append("file", file)
         formData.append("id",usuario.id);
-        fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
+        fetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id+'/foto', {
           method: 'PUT',
           headers: {"Authorization": `Bearer ${token}` },
           body: formData
@@ -74,7 +74,7 @@ const Perfil = () => {
     }
 
     const handleDeleteFoto = () => { 
-        fetch('http://localhost:5000/usuarios/'+usuario.id+'/foto', {
+        fetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id+'/foto', {
           method: 'DELETE',
           headers: {"Authorization": `Bearer ${token}` }
         }).then(() => {

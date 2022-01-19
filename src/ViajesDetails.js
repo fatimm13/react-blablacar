@@ -8,7 +8,7 @@ const ViajesDetails = () => {
   const [usuario] = useGlobalState("user");
   const [token] = useGlobalState("token");
   const { id } = useParams();
-  const { data: viaje, error, isPending } = useFetch('http://localhost:5000/viajes/' + id);
+  const { data: viaje, error, isPending } = useFetch('https://flaskhalfwayhome.herokuapp.com/viajes/' + id);
   const history = useHistory();
   const [numero, setNumero] = useState(0);
   const [show, setShow] = useState(false);
@@ -17,7 +17,7 @@ const ViajesDetails = () => {
   const handleShow = () => setShow(true);
 
   const handleClick = () => {
-    fetch('http://localhost:5000/viajes/' + id, {
+    fetch('https://flaskhalfwayhome.herokuapp.com/viajes/' + id, {
       method: 'DELETE',
       headers: { "Authorization": `Bearer ${token}` },
     }).then(() => {
@@ -33,7 +33,7 @@ const ViajesDetails = () => {
     e.preventDefault();
     const body = {reservadas: parseInt(numero)};
 
-    fetch('http://localhost:5000/usuarios/'+usuario.id+'/reservas/'+id, {
+    fetch('https://flaskhalfwayhome.herokuapp.com/usuarios/'+usuario.id+'/reservas/'+id, {
       method: 'PUT',
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify(body)

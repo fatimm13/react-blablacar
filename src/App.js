@@ -72,10 +72,10 @@ function App() {
                 <LocalizaGasolineras/>
               </Route>
               <Route path="/viajesCreados">
-                {usuario && <ViajesListarUrl url={`http://127.0.0.1:5000/usuarios/${usuario.id}/viajesConductor`}/>}
+                {usuario && <ViajesListarUrl url={`https://flaskhalfwayhome.herokuapp.com/usuarios/${usuario.id}/viajesConductor`}/>}
               </Route>
               <Route path="/reservas">
-                {usuario && <ReservasListarUrl url={`http://127.0.0.1:5000/usuarios/${usuario.id}/reservados`}/>}
+                {usuario && <ReservasListarUrl url={`https://flaskhalfwayhome.herokuapp.com/usuarios/${usuario.id}/reservados`}/>}
               </Route>
               {/** Con esto deberia pillar todas las rutas no definidas e ir al componente NotFound */}
               <Route path="*">

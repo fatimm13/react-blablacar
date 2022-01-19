@@ -4,7 +4,7 @@ import L from 'leaflet';
 import useFetch from "./useFetch";
 const GasolinerasCercanas = (datos) => {
     const {posicion} = datos
-    const { error, isPending, data: gasolineras } = useFetch("http://127.0.0.1:5000/gasolinera?longitud="+posicion.lng+"&latitud="+posicion.lat)
+    const { error, isPending, data: gasolineras } = useFetch("https://flaskhalfwayhome.herokuapp.com/gasolinera?longitud="+posicion.lng+"&latitud="+posicion.lat)
     var cont = 0;
     var redIcon = new L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',

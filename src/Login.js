@@ -15,7 +15,7 @@ const Login = () => {
 
     const cargarCrearUsuario= (token, nombre, isNew)=>{
 
-        fetch('http://localhost:5000/loginUsuario', {
+        fetch('https://flaskhalfwayhome.herokuapp.com/loginUsuario', {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
             body: JSON.stringify({"nombre":nombre})

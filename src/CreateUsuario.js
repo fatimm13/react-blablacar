@@ -15,7 +15,7 @@ const CreateUsuario = () => {
     e.preventDefault();
     const body = {nombre, email, contrasena, "edad": parseInt(edad), ubicacion, descripcion};
 
-    fetch('http://localhost:5000/usuarios', {
+    fetch('https://flaskhalfwayhome.herokuapp.com/usuarios', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)

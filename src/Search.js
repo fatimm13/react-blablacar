@@ -5,7 +5,7 @@ import { useState } from 'react';
 import ViajesListarUrl from './ViajesListarUrl';
 
 const Search = () => {
-    const [url, setUrl] = useState("http://localhost:5000/viajes");
+    const [url, setUrl] = useState("https://flaskhalfwayhome.herokuapp.com/viajes");
     
     const [nombre, setNombre] = useState("");
     const [origen, setOrigen] = useState("");
@@ -19,11 +19,11 @@ const Search = () => {
         setDestino("");
         setLibres(0);
         setPrecio(0);
-        setUrl("http://localhost:5000/viajes");
+        setUrl("https://flaskhalfwayhome.herokuapp.com/viajes");
     }
 
     const handleSubmit = ()=>{
-        let u = `http://127.0.0.1:5000/viajes?nombre=${nombre}`
+        let u = `https://flaskhalfwayhome.herokuapp.com/viajes?nombre=${nombre}`
 
         if(origen!==""){
             u = u + `&origen=${origen}`

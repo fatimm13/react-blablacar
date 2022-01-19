@@ -5,7 +5,7 @@ import Login from './Login';
 
 function UsuariosListar(usuario) {
  
-  const { error, isPending, data: usuarios } = useFetch('http://localhost:5000/usuarios')
+  const { error, isPending, data: usuarios } = useFetch('https://flaskhalfwayhome.herokuapp.com/usuarios')
   
   return (
 

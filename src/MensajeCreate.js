@@ -22,7 +22,7 @@ const MensajeCreate = () => {
             
             const body = {"creador":user.id,"destino":id,"contenido":contenido}
         
-            fetch('http://localhost:5000/mensajes', {
+            fetch('https://flaskhalfwayhome.herokuapp.com/mensajes', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify(body)
