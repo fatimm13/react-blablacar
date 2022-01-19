@@ -50,7 +50,7 @@ const MensajeCreate = () => {
     return (
         <div>
             <InputGroup className="mb-3">
-                <FormControl placeholder="Escribir mensaje..." aria-label="Escribir mensaje" aria-describedby="basic-addon2" value={contenido} onChange={(e)=>{setContenido(e.target.value)}} />
+                <FormControl as="textarea" placeholder="Escribir mensaje..." aria-label="Escribir mensaje" aria-describedby="basic-addon2" value={contenido} onChange={(e)=>{setContenido(e.target.value)}} />
                 <Button onClick={handleSubmit} variant="outline-secondary" id="button-addon2"> Enviar </Button>
             </InputGroup>
 
