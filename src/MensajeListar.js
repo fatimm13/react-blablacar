@@ -19,7 +19,7 @@ function MensajesListar() {
       { error2 && <div>{ error }</div> }
       { isPending2 && <div>LOADING <Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /><Spinner animation="grow" size="sm" /></div>  }
       <Row>
-            <Col md={1}>
+            <Col md="auto">
                 { usuario && <Image style={{ width: '5rem', height: '5rem' }} src={usuario.imagen} />}
             </Col>
             <Col>

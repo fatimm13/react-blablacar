@@ -45,26 +45,34 @@
 }
 
 .derecha{
-  padding: 10px;
+  padding: 0.5%;
   word-wrap: break-word;
-  width: 20ch;
-  margin-right: 80px;
-  max-width: 45% !important;
   background-color: #84b6f4 !important;
+  text-align: right !important;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgb(164, 164, 179);
 }
 
 .izquierda{
-  padding: 10px;
-  margin-left: 80px;
+  padding: 0.5%;
+  /*margin-left: 80px;*/
   word-wrap: break-word;
-  width: 20ch;
-  max-width: 45% !important;
+  /*width: 20ch;*/
+  max-width: 90% !important;
   background-color: #80e780 !important;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgb(164, 164, 179);
 }
 
 .text_der{
-  height: 5px;
+  /**height: 5px;**/
   font-size: small;
   text-align: right;
+}
+
+.text_izq{
+  /**height: 5px;**/
+  font-size: small;
+  text-align: left;
 }
 
