@@ -1,6 +1,4 @@
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import {Button, Form} from 'react-bootstrap';
+import {Button, Form, InputGroup, FormControl} from 'react-bootstrap';
 import { useState } from 'react';
 import ViajesListarUrl from './ViajesListarUrl';
 

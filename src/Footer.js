@@ -29,7 +29,7 @@ const Footer = () => {
                         </svg>
                     </a>
                     {' '}
-                    <a href="https://twitter.com/" aria-label="Tweet Us">
+                    <a href="https://twitter.com/HalfwayhomeBot" aria-label="Tweet Us">
                     <svg version="1.1" id="Layer_1" width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 511.588 511.588">
                         <path fill="#50ABF1" d="M508.508,93.804c-2.794-2.708-6.795-3.601-10.44-2.334l-17.252,5.953c10.162-12.297,17.66-25.14,21.608-37.315
                                 c1.146-3.549,0.104-7.48-2.647-10.006c-2.768-2.543-6.786-3.263-10.275-1.805c-24.194,10.145-45.603,18.979-62.629,24.264

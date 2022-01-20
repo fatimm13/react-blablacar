@@ -16,6 +16,7 @@ import ViajesListarUrl from './ViajesListarUrl';
 import ReservasListarUrl from './ReservasListarUrl';
 import NavbarVacia from './NavbarVacia';
 import MensajeListar from './MensajeListar';
+import SearchMensajeria from './SearchMensajeria';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
               </Route>
 
               <Route path="/mensajeria">
-                
+                <SearchMensajeria/>
               </Route>
               
               <Route path="/mensajes/:id">

@@ -3,10 +3,12 @@ import {useGlobalState} from 'state-pool';
 import { useHistory } from "react-router-dom";
 import {firebase} from './Firebase';
 import { getAuth, signOut } from "firebase/auth";
+import Login from './Login';
 
 const MiNavbar = () => {
 
     const [user,setUser] = useGlobalState("user");
+    const [token, setToken] = useGlobalState("token");
     const history = useHistory();
 
     const goTo = (url)=>{
@@ -15,6 +17,7 @@ const MiNavbar = () => {
 
     const cerrarSesion = ()=>{
         setUser(null)
+        setToken(null)
         let auth = getAuth();
         if(auth.currentUser){
             signOut(auth).then(() => {
@@ -57,7 +60,12 @@ const MiNavbar = () => {
                         </NavDropdown>
                         
                     </Nav>
-                }   
+                }
+                {user === null &&
+                    <Nav>
+                        <Login/>
+                    </Nav>
+                }
                 </Navbar.Collapse>
                 
             </Container>

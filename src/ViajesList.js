@@ -7,7 +7,7 @@ const ViajesList = ({ viajes }) => {
   } 
   return (
 
-    <Row xs={1} md={4} className="g-4">
+    <Row md="auto" className="g-4">
       {viajes.map(viaje => (
         <Col>
           <Card className="bg-light" style={{ width: '20rem', height: '100%' }}>

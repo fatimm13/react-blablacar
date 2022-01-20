@@ -3,7 +3,7 @@
 /* base styles */
 * {
   margin: 0;
-  font-family: "Quicksand";
+  font-family: "Quicksand", Arial, Helvetica, sans-serif;
   color: #333;
 }
 
@@ -55,9 +55,7 @@
 
 .izquierda{
   padding: 0.5%;
-  /*margin-left: 80px;*/
   word-wrap: break-word;
-  /*width: 20ch;*/
   max-width: 90% !important;
   background-color: #80e780 !important;
   border-radius: 20px;
@@ -65,13 +63,11 @@
 }
 
 .text_der{
-  /**height: 5px;**/
   font-size: small;
   text-align: right;
 }
 
 .text_izq{
-  /**height: 5px;**/
   font-size: small;
   text-align: left;
 }

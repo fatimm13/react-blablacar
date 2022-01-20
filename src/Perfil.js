@@ -120,6 +120,10 @@ const Perfil = () => {
                     </Card>
 
                     <Card style={{ width: '90%' }}>
+                        <Button variant="primary" href="mensajeria">Ver mensajería</Button>
+                    </Card>
+
+                    <Card style={{ width: '90%' }}>
                         <Button variant="danger" onClick={handleShow}>Eliminar perfil</Button>
                     </Card>
 

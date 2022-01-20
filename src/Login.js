@@ -91,7 +91,7 @@ const Login = () => {
 
     return ( 
         <div>
-            <Button variant="primary" type="submit" onClick={SignInWithGoogle}> Iniciar sesión </Button> 
+            <Button variant="dark" type="submit" onClick={SignInWithGoogle}> Iniciar sesión </Button> 
             { error && <div>{ error }</div> }
         </div>
     );

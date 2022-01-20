@@ -6,13 +6,13 @@ const UsuarioList = ({ usuarios }) => {
 
     const [user, setUser] = useGlobalState("user");
     const history = useHistory();
-    let ponerUser = (e) => {
-        setUser(e)
-        history.push("/listarViajes")
+    
+    const goTo = (url)=>{
+        history.push(url)
     }
 
     return (
-        <Row xs={1} md={4} className="g-4">
+        <Row md="auto" className="g-4">
             {usuarios.map(usuario =>{
                 return (
                     <Col>
@@ -27,7 +27,7 @@ const UsuarioList = ({ usuarios }) => {
                                 <ListGroupItem><b>Localidad:</b> { usuario.ubicacion} </ListGroupItem>
                                 <ListGroupItem><b>Fecha de inscripci&oacute;n:</b> {new Date(usuario.fecha).toLocaleDateString("es-ES")}  </ListGroupItem>
                             </ListGroup>
-                            <Button variant="primary" onClick={()=>ponerUser(usuario)}>Seleccionar</Button>
+                            <Button variant="primary" onClick={()=>goTo("/mensajes/" + usuario.id)}>Contactar 💬</Button>
                         </Card>
                     </Col>
                 )
